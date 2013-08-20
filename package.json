@@ -1,0 +1,35 @@
+{
+  "name": "ep_ggouv_links",
+  "description": "Adds ggouv links to Etherpad lite. To create ggouv links use @example style formatting",
+  "version": "0.0.1",
+  "author": {
+    "name": "John McLear",
+    "email": "john@mclear.co.uk"
+  },
+  "contributors": [
+    {
+      "name": "Matthias Bartelmeß",
+      "email": "mba@fourplusone.de"
+    },
+    {
+      "name": "Robin Buse",
+      "email": "robin@robinbuse.com"
+    }
+  ],
+  "dependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "homepage": "",
+  "devDependencies": {},
+  "_id": "ep_twitter_links@0.0.1",
+  "optionalDependencies": {},
+  "_engineSupported": true,
+  "_npmVersion": "1.1.18",
+  "_nodeVersion": "v0.6.8",
+  "_defaultsLoaded": true,
+  "dist": {
+    "shasum": "672140d221504d6a799b2323a5328530b2de5af0"
+  },
+  "_from": "ep_ggouv_links"
+}

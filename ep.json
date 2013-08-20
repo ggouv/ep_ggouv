@@ -1,0 +1,11 @@
+{
+  "parts": [
+    {
+      "name": "main",
+      "client_hooks": {
+        "aceGetFilterStack": "ep_ggouv_links/static/js/index:aceGetFilterStack",
+        "aceCreateDomLine": "ep_ggouv_links/static/js/index:aceCreateDomLine"
+      }
+    }
+  ]
+}
