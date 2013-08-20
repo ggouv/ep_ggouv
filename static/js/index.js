@@ -46,7 +46,7 @@ exports.aceCreateDomLine = function(name, context){
   {
     cls = cls.replace(/(^| )externalHref:(\S+)/g, function(x0, space, url)
     {
-      externalHref = url;
+      externalHref = url.replace('@', '');
       return space + "url";
     });
   }
@@ -55,7 +55,7 @@ exports.aceCreateDomLine = function(name, context){
   {
     var url = externalHref;
     var modifier = {
-      extraOpenTags: '<a href="http://ggouv.fr/' + Security.escapeHTMLAttribute(url).replace('@', '') +'">',
+      extraOpenTags: '<a href="http://ggouv.fr/profile/' + Security.escapeHTMLAttribute(url).replace('@', '') +'">',
       extraCloseTags: '</a>',
       cls: cls
     }
