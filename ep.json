@@ -3,8 +3,9 @@
     {
       "name": "main",
       "client_hooks": {
-        "aceGetFilterStack": "ep_ggouv_links/static/js/index:aceGetFilterStack",
-        "aceCreateDomLine": "ep_ggouv_links/static/js/index:aceCreateDomLine"
+        "aceEditorCSS": "ep_ggouv/static/js/index:aceEditorCSS",
+        "aceGetFilterStack": "ep_ggouv/static/js/index:aceGetFilterStack",
+        "aceCreateDomLine": "ep_ggouv/static/js/index:aceCreateDomLine"
       }
     }
   ]
