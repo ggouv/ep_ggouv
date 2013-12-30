@@ -2,8 +2,13 @@
   "parts": [
     {
       "name": "main",
+      /*"hooks": {
+          "padUpdate": "ep_ggouv/static/js/index:padUpdate"
+        },*/
       "client_hooks": {
         "aceEditorCSS": "ep_ggouv/static/js/index:aceEditorCSS",
+        "postAceInit": "ep_ggouv/static/js/index:postAceInit",
+        "aceEditEvent": "ep_ggouv/static/js/index:aceEditEvent",
         "aceGetFilterStack": "ep_ggouv/static/js/index:aceGetFilterStack",
         "aceCreateDomLine": "ep_ggouv/static/js/index:aceCreateDomLine"
       }
