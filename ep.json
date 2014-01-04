@@ -2,9 +2,6 @@
   "parts": [
     {
       "name": "main",
-      /*"hooks": {
-          "padUpdate": "ep_ggouv/static/js/index:padUpdate"
-        },*/
       "client_hooks": {
         "aceEditorCSS": "ep_ggouv/static/js/index:aceEditorCSS",
         "postAceInit": "ep_ggouv/static/js/index:postAceInit",

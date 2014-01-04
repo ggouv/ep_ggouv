@@ -3,3 +3,8 @@
 	cursor: pointer;
 	color: #4690D6;
 }
+#innerdocbody {
+	font-size: 14px;
+	line-height: 18px;
+	color: #111;
+}
