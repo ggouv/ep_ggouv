@@ -2,7 +2,7 @@
 var Security = require('ep_etherpad-lite/static/js/security.js');
 
 /* Define the regular expressions we will use to detect if a string looks like a reference to a pad IE [[foo]] */
-var UserHrefRegexp = new RegExp(/\B([@!][A-Za-z0-9_]+)/g);
+var UserHrefRegexp = new RegExp(/\B([@!\#][A-Za-z0-9_]+)/g);
 
 
 /* Take the string and remove the first and last 2 characters IE [[foo]] returns foo */
@@ -38,12 +38,14 @@ var getCustomRegexpFilter = function(regExp, tag, sanitizeFn, linestylefilter) {
 exports.aceCreateDomLine = function(name, context){
 	var userMention,
 		groupMention,
+		hashtag,
 		cls = context.cls;
 
 	if (cls.indexOf('externalHref') >= 0) { // if it already has the class of externalHref
 		cls = cls.replace(/(^| )externalHref:(\S+)/g, function(x0, space, url) {
 			if (url.indexOf('@') == 0) userMention = url.replace('@', '');
 			if (url.indexOf('!') == 0) groupMention = url.replace('!', '');
+			if (url.indexOf('#') == 0) hashtag = url.replace('#', '');
 			return space + "url";
 		});
 	}
@@ -57,6 +59,13 @@ exports.aceCreateDomLine = function(name, context){
 	if (groupMention) {
 		return [{
 			extraOpenTags: '<span onclick="parent.top.elgg.deck_river.groupPopup(\'' + Security.escapeHTMLAttribute(groupMention) +'\');" class="ggouv-mention">',
+			extraCloseTags: '</span>',
+			cls: cls
+		}];
+	}
+	if (hashtag) {
+		return [{
+			extraOpenTags: '<span onclick="parent.top.elgg.deck_river.hashtagPopup(\'' + Security.escapeHTMLAttribute(hashtag) +'\', \'elgg\');" class="ggouv-hashtag">',
 			extraCloseTags: '</span>',
 			cls: cls
 		}];
@@ -75,34 +84,31 @@ exports.aceGetFilterStack = function(name, context) {
 }
 
 exports.aceEditorCSS = function(hook_name, cb) { // inner pad CSS;
-	return ['ep_ggouv/static/css/ggouv.css'];
+	return ['ep_ggouv/static/css/ace.css'];
 }
 
 exports.aceEditEvent = function(hook, context) {
-	if (context.callstack.docTextChanged) { // http://127.0.0.1/~mama/ggouv.fr/Elgg/etherpad/view/103000/aui-eauiea%C3%A9p
-		var $pt = parent.top,
-			date = new Date(),
-			timestamp = date.getTime()/1000;
+	if (!context.callstack.docTextChanged) return false; // we should only run this if the pad contents is changed...
 
-		if (context.callstack.domClean && context.callstack.type != "setBaseText") {
-			$pt.$('#pad-revisions-count').html(pad.getCollabRevisionNumber());
-			$pt.$('#pad-infos acronym').html($pt.elgg.echo("friendlytime:justnow")).attr({
-				time: timestamp,
-				'original-title': $pt.$.datepicker.formatDate('D dd M yy', date)+' '+$pt.elgg.echo('at')+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
-			});
-		}
+	var $pt = parent.top,
+		date = new Date(),
+		timestamp = date.getTime()/1000;
 
-		// live preview
-		if ($pt.$('#md-preview-pad').is(":visible")) {
-			$pt.$('#md-preview-pad').html($pt.elgg.markdown_wiki.ShowdownConvert(context.rep.alltext));
-		}
+	if (typeof $pt.elgg != 'undefined' && context.callstack.domClean && context.callstack.type != "setBaseText") {
+		$pt.$('#pad-revisions-count').html(pad.getCollabRevisionNumber());
+		$pt.$('#pad-infos acronym').html($pt.elgg.echo("friendlytime:justnow")).attr({
+			time: timestamp,
+			'original-title': $pt.$.datepicker.formatDate('D dd M yy', date)+' '+$pt.elgg.echo('at')+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds()
+		});
+	}
+
+	// live preview
+	if (typeof $pt.elgg != 'undefined' && $pt.$('#md-preview-pad').is(":visible")) {
+		$pt.$('#md-preview-pad').html($pt.elgg.markdown_wiki.ShowdownConvert(context.rep.alltext));
 	}
 }
 
 exports.postAceInit = function(hook, context) {
-	$('#underline').hide();
-	$('#myusernameedit').css('cssText', 'border: none !important; font-weight: bold; pointer-events: none;');
-
 	//document.domain = '127.0.0.1';
 	document.domain = 'http://ggouv.fr';
 /*console.log(parent.top, 'pt');
@@ -141,41 +147,15 @@ exports.padUpdate = function(hook, context) {
 
 }*/
 
-function getPadMarkdown(pad, revNum, callback)
-{
-  var atext = pad.atext;
-  var Markdown;
-  async.waterfall([
 
-  // fetch revision atext
-  function (callback)
-  {
-    if (revNum != undefined)
-    {
-      pad.getInternalRevisionAText(revNum, function (err, revisionAtext)
-      {
-        if(ERR(err, callback)) return;
-        atext = revisionAtext;
-        callback();
-      });
-    }
-    else
-    {
-      callback(null);
-    }
-  },
+exports.userLeave = function(hook_name, args, cb) {
 
-  // convert atext to Markdown
-  function (callback)
-  {
-    Markdown = getMarkdownFromAtext(pad, atext);
-    callback(null);
-  }],
+parent.top.console.log(hook_name);
+parent.top.console.log(args);
+parent.top.console.log(cb);
 
-  // run final callback
-  function (err)
-  {
-    if(ERR(err, callback)) return;
-    callback(null, Markdown);
-  });
-};
+}
+
+var sendUserLeave = function() {
+	parent.top.console.log(cb);
+}

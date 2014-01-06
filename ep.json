@@ -1,13 +1,19 @@
 {
   "parts": [
     {
-      "name": "main",
+      "name": "ggouv",
+      "hooks": {
+        "eejsBlock_editbarMenuLeft": "ep_ggouv/hooks",
+        "eejsBlock_scripts": "ep_ggouv/hooks",
+        "eejsBlock_styles": "ep_ggouv/hooks"
+      },
       "client_hooks": {
-        "aceEditorCSS": "ep_ggouv/static/js/index:aceEditorCSS",
-        "postAceInit": "ep_ggouv/static/js/index:postAceInit",
-        "aceEditEvent": "ep_ggouv/static/js/index:aceEditEvent",
-        "aceGetFilterStack": "ep_ggouv/static/js/index:aceGetFilterStack",
-        "aceCreateDomLine": "ep_ggouv/static/js/index:aceCreateDomLine"
+        "aceEditorCSS": "ep_ggouv/static/js/ace:aceEditorCSS",
+        "postAceInit": "ep_ggouv/static/js/ace:postAceInit",
+        "aceEditEvent": "ep_ggouv/static/js/ace:aceEditEvent",
+        "aceGetFilterStack": "ep_ggouv/static/js/ace:aceGetFilterStack",
+        "aceCreateDomLine": "ep_ggouv/static/js/ace:aceCreateDomLine",
+        "handleClientMessage_userLeave": "ep_ggouv/static/js/ace:userLeave"
       }
     }
   ]
