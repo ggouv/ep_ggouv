@@ -1,6 +1,7 @@
 if(typeof exports == 'undefined'){
 	var exports = this['mymodule'] = {};
 }
+tags = ['tasklist-not-done', 'tasklist-done'];
 
 var underscore = require('ep_etherpad-lite/static/js/underscore'),
 
@@ -9,8 +10,6 @@ var underscore = require('ep_etherpad-lite/static/js/underscore'),
 
 	/* Define the regular expressions we will use to detect if a string looks like a reference to a pad IE [[foo]] */
 	UserHrefRegexp = new RegExp(/\B([@!\#][A-Za-z0-9_]+)/g),
-
-	tags = ['tasklist-not-done', 'tasklist-done'],
 	padEditor,
 
 	/* Take the string and remove the first and last 2 characters IE [[foo]] returns foo */
@@ -59,22 +58,22 @@ exports.aceCreateDomLine = function(name, context){
 	}
 	if (userMention) {
 		return [{
-			extraOpenTags: '<span onclick="parent.top.elgg.deck_river.userPopup(\'' + Security.escapeHTMLAttribute(userMention) +'\');" class="ggouv-mention">',
-			extraCloseTags: '</span>',
+			extraOpenTags: '<mention onclick="parent.top.elgg.deck_river.userPopup(\'' + Security.escapeHTMLAttribute(userMention) +'\');" class="ggouv-mention">',
+			extraCloseTags: '</mention>',
 			cls: cls
 		}];
 	}
 	if (groupMention) {
 		return [{
-			extraOpenTags: '<span onclick="parent.top.elgg.deck_river.groupPopup(\'' + Security.escapeHTMLAttribute(groupMention) +'\');" class="ggouv-mention">',
-			extraCloseTags: '</span>',
+			extraOpenTags: '<mention onclick="parent.top.elgg.deck_river.groupPopup(\'' + Security.escapeHTMLAttribute(groupMention) +'\');" class="ggouv-mention">',
+			extraCloseTags: '</mention>',
 			cls: cls
 		}];
 	}
 	if (hashtag) {
 		return [{
-			extraOpenTags: '<span onclick="parent.top.elgg.deck_river.hashtagPopup(\'' + Security.escapeHTMLAttribute(hashtag) +'\', \'elgg\');" class="ggouv-hashtag">',
-			extraCloseTags: '</span>',
+			extraOpenTags: '<mention onclick="parent.top.elgg.deck_river.hashtagPopup(\'' + Security.escapeHTMLAttribute(hashtag) +'\', \'elgg\');" class="ggouv-hashtag">',
+			extraCloseTags: '</mention>',
 			cls: cls
 		}];
 	}

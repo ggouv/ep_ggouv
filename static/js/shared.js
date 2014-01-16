@@ -3,7 +3,7 @@
 var collectContentPre = function(hook, context){
 	var tname = context.cls,
 		state = context.state,
-		lineAttributes = state.lineAttributes
+		lineAttributes = state.lineAttributes;
 
 	var tagIndex = tname.indexOf("tasklist-not-done");
 	if(tagIndex !== -1){
@@ -19,7 +19,7 @@ var collectContentPre = function(hook, context){
 var collectContentPost = function(hook, context){
 	var tname = context.tname,
 		state = context.state,
-		lineAttributes = state.lineAttributes
+		lineAttributes = state.lineAttributes;
 
 	if (tname.indexOf("tasklist-not-done") >= 0){
 		delete lineAttributes['tasklist-not-done'];
