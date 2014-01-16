@@ -1,0 +1,135 @@
+<%
+  var settings = require("ep_etherpad-lite/node/utils/Settings");
+%>
+<!doctype html>
+<html>
+
+        <title><%=settings.title%></title>
+    <script>
+      /*
+      |@licstart  The following is the entire license notice for the
+      JavaScript code in this page.|
+
+      Copyright 2011 Peter Martischka, Primary Technology.
+
+      Licensed under the Apache License, Version 2.0 (the "License");
+      you may not use this file except in compliance with the License.
+      You may obtain a copy of the License at
+
+         http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+
+      |@licend  The above is the entire license notice
+      for the JavaScript code in this page.|
+      */
+    </script>
+
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+        <link rel="shortcut icon" href="<%=settings.favicon%>">
+
+        <link rel="localizations" type="application/l10n+json" href="locales.json">
+        <script type="text/javascript" src="static/js/html10n.js"></script>
+        <script type="text/javascript" src="static/js/l10n.js"></script>
+
+        <style>
+            html, body {
+              height: 100%;
+            }
+            body {
+              margin: 0;
+              font: 18px helvetica, sans-serif;
+              background: white;
+              background: -webkit-radial-gradient(circle,white,#eee 60%) center fixed;
+              background: -moz-radial-gradient(circle,white,#eee 60%) center fixed;
+              background: -ms-radial-gradient(circle,white,#eee 60%) center fixed;
+              background: -o-radial-gradient(circle,white,#eee 60%) center fixed;
+            }
+            #wrapper {
+              margin-top: 15%;
+              padding: 15px;
+            }
+            #inner {
+              position:relative;
+              max-width: 400px;
+              margin: 0 auto;
+              text-align: justify;
+            }
+            #inner a {
+              margin-top: 30px;
+              text-align: center;
+              display: block;
+              text-decoration: none;
+              background: #4690D6;
+              color: white;
+              border-radius: 8px;
+              padding: 10px 0;
+            }
+            #inner a:hover {
+              background: #0054A7;
+            }
+            #letters {
+              display: none;
+            }
+            @media only screen and (min-device-width: 320px) and (max-device-width: 720px) {
+              body {
+                background: white;
+                background: -webkit-linear-gradient(white,#eee 60%) center fixed;
+                background: -moz-linear-gradient(white,#eee 60%) center fixed;
+                background: -ms-linear-gradient(white,#eee 60%) center fixed;
+              }
+              #wrapper {
+                margin-top: 0;
+              }
+              #inner {
+                width: 95%;        
+              }
+            }
+        </style>
+        <link href="static/custom/index.css" rel="stylesheet"> 
+
+        <div id="wrapper">
+        <% e.begin_block("indexWrapper"); %>
+            <div id="inner">
+                <div>Vous ne pouvez pas accéder aux pads depuis cette page. Chercher les pads depuis ggouv.fr !<br><br>Pour créer un pad, vous devez être inscrit sur ggouv.fr.</div>  
+                <a href="http://ggouv.fr">Aller sur ggouv.fr</a>
+            </div>
+        <% e.end_block(); %>
+        </div>
+
+        <script src="static/custom/index.js"></script>
+        <script> 
+      
+            function go2Name() 
+            {
+                var padname = document.getElementById("padname").value;
+                padname.length > 0 ? window.location = "p/" + padname : alert("Please enter a name")
+            }
+ 
+            function go2Random() 
+            {
+                window.location = "p/" + randomPadName();
+            }
+ 
+            function randomPadName() 
+            {
+                var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+                var string_length = 10;
+                var randomstring = '';
+                for (var i = 0; i < string_length; i++) 
+                {
+                    var rnum = Math.floor(Math.random() * chars.length);
+                    randomstring += chars.substring(rnum, rnum + 1);
+                }
+                return randomstring;
+            }
+            
+            // start the custom js
+            if (typeof customStart == "function") customStart();
+        </script>
+</html>
