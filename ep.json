@@ -7,6 +7,8 @@
         "eejsBlock_editbarMenuLeft": "ep_ggouv/hooks",
         "eejsBlock_scripts": "ep_ggouv/hooks",
         "eejsBlock_styles": "ep_ggouv/hooks"
+        "collectContentPre": "ep_ggouv/static/js/shared",
+        "collectContentPost": "ep_ggouv/static/js/shared"
       },
       "client_hooks": {
         "aceEditorCSS": "ep_ggouv/static/js/ace:aceEditorCSS",
@@ -15,6 +17,7 @@
         "aceGetFilterStack": "ep_ggouv/static/js/ace:aceGetFilterStack",
         "aceCreateDomLine": "ep_ggouv/static/js/ace:aceCreateDomLine",
         "handleClientMessage_userLeave": "ep_ggouv/static/js/ace:userLeave"
+        "collectContentPre": "ep_ggouv/static/js/shared",
       }
     }
   ]
