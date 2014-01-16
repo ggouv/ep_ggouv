@@ -7,5 +7,12 @@
 	"ggouv.count.revision": "révision",
 	"ggouv.count.revisions": "révisions",
 	"ggouv.count.savedRevision": "marquée",
-	"ggouv.count.savedRevisions": "marquées"
+	"ggouv.count.savedRevisions": "marquées",
+
+	"ep_headings.h1" : "Titre 1",
+	"ep_headings.h2" : "Titre 2",
+	"ep_headings.h3" : "Titre 3",
+	"ep_headings.h4" : "Titre 4",
+	"ep_headings.h5" : "Titre 5",
+	"ep_headings.h6" : "Titre 6"
 }

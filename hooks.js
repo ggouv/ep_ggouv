@@ -1,5 +1,7 @@
 var path = require('path');
 var eejs = require("ep_etherpad-lite/node/eejs");
+var Changeset = require("ep_etherpad-lite/static/js/Changeset");
+var settings = require("../../src/node/utils/Settings");
 
 // override index.html page
 exports.expressCreateServer = function (hook_name, args, cb) {
@@ -57,31 +59,8 @@ exports.expressCreateServer = function (hook_name, args, cb) {
 	});
 };
 
-exports.getLineHTMLForExport = function(hook_name, args, cb) {
-//	console.log(args, 'agr');
-/*	{ line: { listLevel: 0, text: '', aline: '|1+1' },
-  apool:
-   { numToAttrib: { '0': [Object], '1': [Object], '2': [Object], '3': [Object] },
-     attribToNum:
-      { 'bold,true': 0,
-        'author,a.Rr5tCeqie9cQrPIj': 1,
-        'author,a.t5eXxqPez78IaUAW': 2,
-        'author,a.YSoLrQzyzplvjvXU': 3 },
-     nextNum: 4 },
-  attribLine: '|1+1',
-  text: 'LE TEXTE DE LA LIGNE' } 'agrs'*/
-	return args.text;
-};
-
-
-
 exports.eejsBlock_editbarMenuLeft = function (hook_name, args, cb) {
 	args.content = args.content + eejs.require("ep_ggouv/templates/toolbar.html");
-	return cb();
-};
-
-exports.eejsBlock_scripts = function (hook_name, args, cb) {
-	args.content = args.content + eejs.require("ep_ggouv/templates/scripts.html", {}, module);
 	return cb();
 };
 
@@ -89,3 +68,28 @@ exports.eejsBlock_styles = function (hook_name, args, cb) {
 	args.content = args.content + eejs.require("ep_ggouv/templates/style.html", {}, module);
 	return cb();
 };
+
+// line, apool,attribLine,text
+exports.getLineHTMLForExport = function (hook, context) {
+	var task = _analyzeLine(context.attribLine, context.apool);
+	if (task) {
+		if (task == 'tasklist-not-done') task = 'tasklist';
+		var href = "http://" + settings.ip + ":" + settings.port,
+			inlineStyle = "background: url('"+href+"/static/plugins/ep_ggouv/static/img/"+task+".png') no-repeat 2px 1px;padding-left: 20px;list-style: none;";
+
+		return "<li class=\""+task+"\" style=\"" + inlineStyle + "\"><span>" + context.text.substring(1) + "</span></li>";
+	}
+}
+
+function _analyzeLine(alineAttrs, apool) {
+	var task = null;
+	if (alineAttrs) {
+		var opIter = Changeset.opIterator(alineAttrs);
+		if (opIter.hasNext()) {
+			var op = opIter.next();
+			task = Changeset.opAttributeValue(op, 'tasklist-not-done', apool);
+			if (!task) task = Changeset.opAttributeValue(op, 'tasklist-done', apool);
+		}
+	}
+	return task;
+}

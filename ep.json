@@ -4,8 +4,8 @@
       "name": "ggouv",
       "hooks": {
         "expressCreateServer": "ep_ggouv/hooks",
+        "getLineHTMLForExport": "ep_ggouv/hooks",
         "eejsBlock_editbarMenuLeft": "ep_ggouv/hooks",
-        "eejsBlock_scripts": "ep_ggouv/hooks",
         "eejsBlock_styles": "ep_ggouv/hooks",
         "collectContentPre": "ep_ggouv/static/js/shared",
         "collectContentPost": "ep_ggouv/static/js/shared"

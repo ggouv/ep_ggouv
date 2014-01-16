@@ -223,27 +223,12 @@ exports.postAceInit = function(hook, context) {
 	document.domain = 'http://ggouv.fr';
 
 }
-/*
-exports.padUpdate = function(hook, context) {
-	//console.log(context);
-	//pad.collabClient.sendMessage('aui');
-	//io.sockets.emit('users_count', clients);
-	//sendMessage('test');
-
-}*/
 
 
-exports.userLeave = function(hook_name, args, cb) {
 
-parent.top.console.log(hook_name);
-parent.top.console.log(args);
-parent.top.console.log(cb);
 
-}
 
-var sendUserLeave = function() {
-	parent.top.console.log(cb);
-}
+
 
 
 

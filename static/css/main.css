@@ -269,8 +269,25 @@ input[type=checkbox] {
 	background: #EEE;
 	width: 185px;
 }
+#chatloadmessagesbutton {
+	line-height: 1.4em;
+	border: none;
+	background: white;
+	margin: 0;
+	width: 100%;
+	color: #4690D6;
+	font-weight: bold;
+	font-size: 12px;
+	padding: 5px 0;
+	cursor: pointer;
+}
+#chatloadmessagesbutton:hover {
+	color: white;
+	background: #4690D6;
+}
 #chatbox.stickyChat {
 	border-left: 2px solid #EEE !important;
+	top: 40px;
 }
 #titlelabel {
 	font-size: 15px;

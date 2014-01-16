@@ -13,22 +13,14 @@ $(document).ready(function (){
 
 	$('#chatinput').attr('placeholder', 'Entrez un message...');
 
-	$('#mycolorpickersave').on('click', function() {
-		/*var rgb2hex = function(rgb) {
-			rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-			function hex(x) {
-				return ("0" + parseInt(x).toString(16)).slice(-2);
-			}
-			return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-		},
-		myColor = $('#mycolorpickerpreview').css('background-color');*/
+	$('#mycolorpickersave').off().on('click', function() {
 		setTimeout(function(){
 			$(parent.$('#pad-authors .'+pad.myUserInfo.userId.replace('.', '-')+' .pad-user')).css('border-left', '5px solid '+pad.myUserInfo.colorId);
 		}, 500);
 
 	});
 
-	$('#insertSignature a').on('click', function(e){
+	$('#insertSignature a').off().on('click', function(e){
 		var userName = pad.getUserName();
 
 		if (!userName || userName == "undefined" || userName == "unnamed"){
@@ -123,6 +115,4 @@ exports.handleClientMessage_USER_NEWINFO = function(hook, context, callback) {
 exports.handleClientMessage_CHAT_MESSAGE = function(hook, context, callback) {
 	if (parent.top.ggouv !== undefined) parent.top.ggouv.notify();
 };
-
-
 
