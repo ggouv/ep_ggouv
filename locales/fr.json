@@ -1,0 +1,11 @@
+{
+	"pad.toolbar.tasklist.title": "Ajouter une case à cocher",
+	"pad.toolbar.savedRevision.title": "Marquer la révision",
+
+	"timeslider.saved": "enregistr\u00e9e le {{day}} {{month}} {{year}}",
+
+	"ggouv.count.revision": "révision",
+	"ggouv.count.revisions": "révisions",
+	"ggouv.count.savedRevision": "marquée",
+	"ggouv.count.savedRevisions": "marquées"
+}

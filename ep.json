@@ -6,18 +6,23 @@
         "expressCreateServer": "ep_ggouv/hooks",
         "eejsBlock_editbarMenuLeft": "ep_ggouv/hooks",
         "eejsBlock_scripts": "ep_ggouv/hooks",
-        "eejsBlock_styles": "ep_ggouv/hooks"
+        "eejsBlock_styles": "ep_ggouv/hooks",
         "collectContentPre": "ep_ggouv/static/js/shared",
         "collectContentPost": "ep_ggouv/static/js/shared"
       },
       "client_hooks": {
-        "aceEditorCSS": "ep_ggouv/static/js/ace:aceEditorCSS",
-        "postAceInit": "ep_ggouv/static/js/ace:postAceInit",
-        "aceEditEvent": "ep_ggouv/static/js/ace:aceEditEvent",
-        "aceGetFilterStack": "ep_ggouv/static/js/ace:aceGetFilterStack",
-        "aceCreateDomLine": "ep_ggouv/static/js/ace:aceCreateDomLine",
-        "handleClientMessage_userLeave": "ep_ggouv/static/js/ace:userLeave"
+        "aceEditorCSS": "ep_ggouv/static/js/ace",
+        "aceDomLineProcessLineAttributes": "ep_ggouv/static/js/ace",
+        "postAceInit": "ep_ggouv/static/js/ace",
+        "aceInitialized": "ep_ggouv/static/js/ace",
+        "aceEditEvent": "ep_ggouv/static/js/ace",
+        "aceGetFilterStack": "ep_ggouv/static/js/ace",
+        "aceCreateDomLine": "ep_ggouv/static/js/ace",
         "collectContentPre": "ep_ggouv/static/js/shared",
+        "aceAttribsToClasses": "ep_ggouv/static/js/ace",
+        "handleClientMessage_NEW_CHANGES":"ep_ggouv/static/js/main",
+        "handleClientMessage_USER_NEWINFO":"ep_ggouv/static/js/main",
+        "handleClientMessage_CHAT_MESSAGE":"ep_ggouv/static/js/main"
       }
     }
   ]
