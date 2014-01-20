@@ -114,7 +114,7 @@ exports.aceEditEvent = function(hook, context) {
 		});
 
 		// add me if first time
-		if (context.callstack.type != "setBaseText") addHistoricalUserToSidebar(pad.myUserInfo);
+		if ($.inArray(context.callstack.type, ['applyChangesToBase', 'setBaseText']) < 0) addHistoricalUserToSidebar(pad.myUserInfo);
 	}
 
 	// live preview
@@ -220,7 +220,7 @@ exports.postAceInit = function(hook, context) {
 	});
 
 	//document.domain = '127.0.0.1';
-	document.domain = 'http://ggouv.fr';
+	document.domain = 'ggouv.fr';
 
 }
 
